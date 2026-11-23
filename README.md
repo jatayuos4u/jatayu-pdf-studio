@@ -18,6 +18,12 @@ Run this from the folder containing the downloaded package:
 sudo apt install ./jatayu-pdf-studio_0.10.7-1_all.deb
 ```
 
+## Screenshot
+
+![Jatayu PDF Studio in Review mode, showing highlighted text and page thumbnails](design/jatayu-pdf-studio-screenshot.png)
+
+Review mode on JatayuOS, shown in v0.10.1.
+
 ## Run from source
 
 Open a terminal in the extracted source folder and run
