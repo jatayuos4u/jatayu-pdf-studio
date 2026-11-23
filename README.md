@@ -6,7 +6,21 @@ paper palette, forest-green actions, burnt-orange selection, bottom thumbnail
 strip, and contextual controls on the right. The sample PDF starts on its
 cover. Select page 2 to see the field journal used in the mockup.
 
-## Run on JatayuOS or Debian 13
+## Download and install
+
+**JatayuOS or Debian 13**
+
+[Download Jatayu PDF Studio v0.10.7 (.deb)](https://github.com/jatayuos4u/jatayu-pdf-studio/releases/download/v0.10.7/jatayu-pdf-studio_0.10.7-1_all.deb)
+
+[Latest release](https://github.com/jatayuos4u/jatayu-pdf-studio/releases/latest) · [v0.10.7 release notes and checksums](https://github.com/jatayuos4u/jatayu-pdf-studio/releases/tag/v0.10.7)
+
+Run this from the folder containing the downloaded package:
+
+```sh
+sudo apt install ./jatayu-pdf-studio_0.10.7-1_all.deb
+```
+
+## Run from source
 
 Open a terminal in the extracted source folder and run
 
