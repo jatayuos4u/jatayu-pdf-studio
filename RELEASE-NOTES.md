@@ -1,3 +1,7 @@
+# Jatayu PDF Studio 0.10.7
+
+- Keeps licence dialog actions visible and links to the versioned GitHub licence.
+
 # Jatayu PDF Studio 0.10.6
 
 - Replaces the licence popup with a dedicated window, with credits and a scrollable licence.

@@ -25,7 +25,7 @@ GREEN = "#194b31"
 ORANGE = "#b8430a"
 BORDER = "#b8ad9d"
 FONT = ("DejaVu Serif", 11)
-VERSION = "v10.6"
+VERSION = "v10.7"
 ARTWORK = Path(__file__).resolve().parent / "artwork"
 
 
@@ -231,7 +231,7 @@ class Studio:
         window.title("Licence and Credits · Jatayu PDF Studio")
         window.transient(self.root)
         window.geometry("700x500")
-        window.minsize(420, 320)
+        window.minsize(530, 320)
 
         header = self.frame(window, bg=GREEN, padx=18, pady=14)
         header.pack(fill="x")
@@ -241,6 +241,17 @@ class Studio:
         self.label(heading, "Licence and Credits", fg=PANEL,
                    font=("DejaVu Serif", 19, "bold")).pack(anchor="w")
         self.label(heading, "Jatayu PDF Studio", fg=PANEL).pack(anchor="w")
+
+        actions = self.frame(window)
+        actions.pack(side="bottom", fill="x", padx=16, pady=(0, 12))
+        self.button(actions, "Source on GitHub", lambda: webbrowser.open(
+            "https://github.com/jatayuos4u/jatayu-pdf-studio"
+        )).pack(side="left")
+        self.button(actions, "View licence on GitHub", lambda: webbrowser.open(
+            "https://github.com/jatayuos4u/jatayu-pdf-studio/blob/v0.10.7/LICENSE"
+        )).pack(side="left", padx=(8, 0))
+        close = self.button(actions, "Close", window.destroy, bg=GREEN, fg=PANEL)
+        close.pack(side="right")
 
         tabs = ttk.Notebook(window)
         tabs.pack(fill="both", expand=True, padx=16, pady=14)
@@ -276,13 +287,6 @@ class Studio:
                     content.insert("end", "See LICENSE in the GitHub repository.")
             content.configure(state="disabled")
 
-        actions = self.frame(window)
-        actions.pack(fill="x", padx=16, pady=(0, 12))
-        self.button(actions, "Source on GitHub", lambda: webbrowser.open(
-            "https://github.com/jatayuos4u/jatayu-pdf-studio"
-        )).pack(side="left")
-        close = self.button(actions, "Close", window.destroy, bg=GREEN, fg=PANEL)
-        close.pack(side="right")
         window.bind("<Escape>", lambda event: window.destroy())
         close.focus_set()
 
