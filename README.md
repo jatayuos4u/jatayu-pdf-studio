@@ -52,7 +52,13 @@ Scans without a text layer support image copying.
 The logo and PNG app icons are in `artwork/`. The application uses the mark
 in its header and registers window icons with Tk. **Help** provides the reader
 guide, About, and licence and credits. Press **F1** to open the Reader Guide, with tabs for reading, bookmarks and review, and keyboard shortcuts.
-The application licence is pending the creator’s selection.
+
+
+## Licence and credits
+
+Created by **Anup Kumar Yadav** for JatayuOS. Jatayu PDF Studio is licensed
+under [GNU AGPL v3 only](LICENSE) (`AGPL-3.0-only`). PDF rendering uses
+PyMuPDF and MuPDF by Artifex Software. See [third-party notices](THIRD-PARTY-NOTICES.md).
 
 ## Build the Debian package
 

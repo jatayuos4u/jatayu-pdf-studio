@@ -1,11 +1,16 @@
-# Jatayu PDF Studio 0.10.4 — Testing
+# Jatayu PDF Studio 0.10.7
 
-Tested on JatayuOS with the Debian package version `0.10.4-1`.
+- Keeps licence dialog actions visible and links to the versioned GitHub licence.
 
-- Open and review PDFs in a desktop reader with full-screen zoom and bookmarks.
-- Open password-protected PDFs and preserve encryption when saving a highlighted copy.
-- PDF parsing runs in a restricted worker. Saved copies are created with owner-only permissions.
+# Jatayu PDF Studio 0.10.6
 
-Install the Debian package with `sudo apt install ./jatayu-pdf-studio_0.10.4-1_all.deb`. Verify downloaded assets with `sha256sum -c SHA256SUMS`.
+- Replaces the licence popup with a dedicated window, with credits and a scrollable licence.
 
-This pre-release is for private testing. The app licence is pending the creator’s selection.
+# Jatayu PDF Studio 0.10.5
+
+- Applies the GNU AGPL v3 only licence to Jatayu PDF Studio.
+- Updates the in-app Licence and credits dialog and includes the full licence
+  and third-party notices in the Debian package.
+
+The reader, PDF worker, and bookmark storage use the same implementation as
+the 0.10.4 testing build.
