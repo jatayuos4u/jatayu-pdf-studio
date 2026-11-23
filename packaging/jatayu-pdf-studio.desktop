@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Jatayu PDF Studio
+Comment=Read, bookmark, and review PDF documents
+Exec=jatayu-pdf-studio %f
+Icon=jatayu-pdf-studio
+Terminal=false
+Categories=Graphics;Viewer;
+MimeType=application/pdf;
+StartupWMClass=JatayuPdfStudio

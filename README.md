@@ -1,3 +1,61 @@
 # Jatayu PDF Studio
 
-PDF reader and review tool for JatayuOS.
+Early desktop prototype for JatayuOS. The approved visual reference is
+[design/approved-mockup.png](design/approved-mockup.png). It fixes the warm
+paper palette, forest-green actions, burnt-orange selection, bottom thumbnail
+strip, and contextual controls on the right. The sample PDF starts on its
+cover. Select page 2 to see the field journal used in the mockup.
+
+## Run on JatayuOS or Debian 13
+
+Open a terminal in the extracted source folder and run
+
+```sh
+sudo apt install python3-tk python3-fitz bubblewrap libseccomp2 kdialog wl-clipboard xclip
+python3 app.py demo/Monsoon-Field-Notes.pdf
+```
+
+## Read and review
+
+- Drag over words in a PDF with a text layer. Use Ctrl+C, the right-click menu,
+  or **Copy text** to copy the selected words.
+- Click **Copy area as image**, then drag across the page to copy the region as
+  PNG. This works on scanned pages. Paste into a desktop app that accepts PNG.
+  Install wl-clipboard for Wayland or xclip for X11.
+- Switch to **Review**, select words, and click **Highlight selection**. Use
+  **Save a copy** to export the annotated PDF to a new filename.
+- Click **Full screen** or press F11. Use **Previous**, **Next**, or the page
+  field in the full-screen bottom bar. Press Enter after typing a page number.
+  Press Esc or click **Exit full screen** to restore the regular interface.
+- Enter a page number in the bottom bar and press Enter. Ctrl+G works in full screen.
+- Use − / +, click the current percentage, or use Ctrl+mouse wheel to zoom.
+  The normal and full-screen bottom bars share the zoom setting. Zoom keeps
+  the same point centered where the page boundaries allow it.
+  Use **Fit page** (Ctrl+0) to see the entire page, or **Fit width** and scroll.
+  Drag the green scrollbar at the right edge to move within the current page in either window mode.
+  Shift+mouse wheel pans sideways when zoomed in.
+
+- Click the page’s top-right fold to toggle a whole-page bookmark. The
+  thumbnail also shows a marker. Ctrl+D saves the current page.
+- Right-click any point on a page and choose **Bookmark this spot**. Add an
+  optional label. The page displays a small ribbon and a dot at that spot.
+- Open **Bookmarks** in either view to jump to or remove a saved page or spot.
+  Spots are stored in page coordinates and can be revisited at different zoom
+  levels. Bookmarks are stored locally by PDF path, separately from the PDF.
+
+Open and Save use the KDE file picker when kdialog is installed. This prototype
+uses Tk and PyMuPDF and opens one document at a time. Text selection is by word.
+Scans without a text layer support image copying.
+
+## Branding and Help
+
+The logo and PNG app icons are in `artwork/`. The application uses the mark
+in its header and registers window icons with Tk. **Help** provides the reader
+guide, About, and licence and credits. Press **F1** to open the Reader Guide, with tabs for reading, bookmarks and review, and keyboard shortcuts.
+The application licence is pending the creator’s selection.
+
+## Build the Debian package
+
+From this source directory, run `./packaging/build-deb.sh`. An optional argument
+selects an existing output directory. Install using APT with the local .deb
+path. PDF opening requires Bubblewrap and fails if the worker cannot start.
