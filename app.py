@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Jatayu PDF Studio prototype."""
 import sys
+import webbrowser
 import subprocess
 import sqlite3
 
@@ -24,7 +25,7 @@ GREEN = "#194b31"
 ORANGE = "#b8430a"
 BORDER = "#b8ad9d"
 FONT = ("DejaVu Serif", 11)
-VERSION = "v10.5"
+VERSION = "v10.6"
 ARTWORK = Path(__file__).resolve().parent / "artwork"
 
 
@@ -55,6 +56,7 @@ class Studio:
         self.word_key = None
         self.page_menu = tk.Menu(root, tearoff=False)
         self.reader_guide = None
+        self.licence_window = None
         self.saved_pages = []
         self.saved_spots = []
         self.bookmark_target = None
@@ -219,18 +221,70 @@ class Studio:
         panel.grab_set()
 
     def show_licence(self):
-        messagebox.showinfo(
-            "Licence and credits",
-            "Jatayu PDF Studio · Created by Anup Kumar Yadav for JatayuOS.\n\n"
-            "App licence: GNU AGPL v3 only (AGPL-3.0-only).\n"
-            "Source: https://github.com/jatayuos4u/jatayu-pdf-studio\n\n"
-            "PDF engine: PyMuPDF and MuPDF by Artifex Software. "
-            "Desktop integration: Python, Tk, Bubblewrap, libseccomp, "
-            "KDialog, wl-clipboard, and xclip.\n\n"
-            "See LICENSE and THIRD-PARTY-NOTICES.md in the source "
-            "or /usr/share/doc/jatayu-pdf-studio/ in the Debian installation.",
-            parent=self.root,
+        if self.licence_window is not None and self.licence_window.winfo_exists():
+            self.licence_window.deiconify()
+            self.licence_window.lift()
+            self.licence_window.focus_set()
+            return
+
+        window = self.licence_window = tk.Toplevel(self.root, bg=PAPER)
+        window.title("Licence and Credits · Jatayu PDF Studio")
+        window.transient(self.root)
+        window.geometry("700x500")
+        window.minsize(420, 320)
+
+        header = self.frame(window, bg=GREEN, padx=18, pady=14)
+        header.pack(fill="x")
+        self.label(header, image=self.icons[48]).pack(side="left", padx=(0, 12))
+        heading = self.frame(header, bg=GREEN)
+        heading.pack(side="left")
+        self.label(heading, "Licence and Credits", fg=PANEL,
+                   font=("DejaVu Serif", 19, "bold")).pack(anchor="w")
+        self.label(heading, "Jatayu PDF Studio", fg=PANEL).pack(anchor="w")
+
+        tabs = ttk.Notebook(window)
+        tabs.pack(fill="both", expand=True, padx=16, pady=14)
+        documents = ARTWORK.parent
+        if not (documents / "LICENSE").is_file():
+            documents = Path("/usr/share/doc/jatayu-pdf-studio")
+        credits = (
+            ("Creator", "Anup Kumar Yadav · JatayuOS"),
+            ("Application licence", "GNU Affero General Public License v3 only (AGPL-3.0-only)"),
+            ("PDF engine", "PyMuPDF and MuPDF · Artifex Software"),
+            ("Runtime and sandbox", "Python, Tk, Bubblewrap, and libseccomp"),
+            ("Desktop integration", "KDialog, wl-clipboard, and xclip"),
         )
+        for label, file in (("Credits", None), ("Full Licence", documents / "LICENSE")):
+            tab = self.frame(tabs, bg=PANEL)
+            tabs.add(tab, text=label)
+            content = tk.Text(tab, wrap="word", bg=PANEL, fg=INK, relief="flat",
+                              font=("DejaVu Sans", 11), padx=18, pady=12)
+            scrollbar = ttk.Scrollbar(tab, orient="vertical", command=content.yview)
+            content.configure(yscrollcommand=scrollbar.set)
+            scrollbar.pack(side="right", fill="y")
+            content.pack(side="left", fill="both", expand=True)
+            if file is None:
+                content.tag_configure("heading", foreground=GREEN,
+                                      font=("DejaVu Sans", 11, "bold"))
+                for title, value in credits:
+                    content.insert("end", title + "\n", "heading")
+                    content.insert("end", value + "\n\n")
+            else:
+                try:
+                    content.insert("end", file.read_text(encoding="utf-8"))
+                except OSError:
+                    content.insert("end", "See LICENSE in the GitHub repository.")
+            content.configure(state="disabled")
+
+        actions = self.frame(window)
+        actions.pack(fill="x", padx=16, pady=(0, 12))
+        self.button(actions, "Source on GitHub", lambda: webbrowser.open(
+            "https://github.com/jatayuos4u/jatayu-pdf-studio"
+        )).pack(side="left")
+        close = self.button(actions, "Close", window.destroy, bg=GREEN, fg=PANEL)
+        close.pack(side="right")
+        window.bind("<Escape>", lambda event: window.destroy())
+        close.focus_set()
 
     def page_navigation(self, parent, *, full=False):
         navigation = self.frame(parent)

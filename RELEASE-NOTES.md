@@ -1,3 +1,7 @@
+# Jatayu PDF Studio 0.10.6
+
+- Replaces the licence popup with a dedicated window, with credits and a scrollable licence.
+
 # Jatayu PDF Studio 0.10.5
 
 - Applies the GNU AGPL v3 only licence to Jatayu PDF Studio.
