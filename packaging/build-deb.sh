@@ -9,6 +9,7 @@ install -Dm644 "$project/packaging/control" "$stage/DEBIAN/control"
 install -Dm644 "$project/packaging/jatayu-pdf-studio.desktop" \
     "$stage/usr/share/applications/jatayu-pdf-studio.desktop"
 install -Dm644 "$project/packaging/copyright" "$stage/usr/share/doc/jatayu-pdf-studio/copyright"
+install -m644 "$project/LICENSE" "$project/THIRD-PARTY-NOTICES.md" "$stage/usr/share/doc/jatayu-pdf-studio/"
 app="$stage/usr/share/jatayu-pdf-studio"
 install -d "$app/artwork" "$stage/usr/bin"
 install -m644 "$project"/*.py "$app/"

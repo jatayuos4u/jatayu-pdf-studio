@@ -24,7 +24,7 @@ GREEN = "#194b31"
 ORANGE = "#b8430a"
 BORDER = "#b8ad9d"
 FONT = ("DejaVu Serif", 11)
-VERSION = "v10.4"
+VERSION = "v10.5"
 ARTWORK = Path(__file__).resolve().parent / "artwork"
 
 
@@ -221,10 +221,14 @@ class Studio:
     def show_licence(self):
         messagebox.showinfo(
             "Licence and credits",
-            "The Jatayu PDF Studio app licence is pending the creator’s selection.\n\n"
-            "This prototype uses Python, Tk, and PyMuPDF. It can also use "
-            "KDialog, wl-clipboard, and xclip. On Debian, installed package "
-            "copyright notices are available in /usr/share/doc/<package>/copyright.",
+            "Jatayu PDF Studio · Created by Anup Kumar Yadav for JatayuOS.\n\n"
+            "App licence: GNU AGPL v3 only (AGPL-3.0-only).\n"
+            "Source: https://github.com/jatayuos4u/jatayu-pdf-studio\n\n"
+            "PDF engine: PyMuPDF and MuPDF by Artifex Software. "
+            "Desktop integration: Python, Tk, Bubblewrap, libseccomp, "
+            "KDialog, wl-clipboard, and xclip.\n\n"
+            "See LICENSE and THIRD-PARTY-NOTICES.md in the source "
+            "or /usr/share/doc/jatayu-pdf-studio/ in the Debian installation.",
             parent=self.root,
         )
 
