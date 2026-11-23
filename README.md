@@ -1,10 +1,8 @@
 # Jatayu PDF Studio
 
-Early desktop prototype for JatayuOS. The approved visual reference is
-[design/approved-mockup.png](design/approved-mockup.png). It fixes the warm
-paper palette, forest-green actions, burnt-orange selection, bottom thumbnail
-strip, and contextual controls on the right. The sample PDF starts on its
-cover. Select page 2 to see the field journal used in the mockup.
+Jatayu PDF Studio is a desktop PDF reader for JatayuOS and Debian 13. It supports full-screen reading, page and spot bookmarks, and text highlighting.
+
+**Current stable release: v0.10.7.**
 
 ## Download and install
 
@@ -57,7 +55,7 @@ python3 app.py demo/Monsoon-Field-Notes.pdf
   Spots are stored in page coordinates and can be revisited at different zoom
   levels. Bookmarks are stored locally by PDF path, separately from the PDF.
 
-Open and Save use the KDE file picker when kdialog is installed. This prototype
+Open and Save use the KDE file picker when kdialog is installed. The application
 uses Tk and PyMuPDF and opens one document at a time. Text selection is by word.
 Scans without a text layer support image copying.
 
